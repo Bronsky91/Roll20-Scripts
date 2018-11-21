@@ -10,6 +10,11 @@ function patrolling(patrolObject) {
         if (token.get("status_bluemarker") === false) return;
         if (stepstaken > 5) {
             //Switch directions!
+            if (direction == "left" && !token.get("fliph")) {
+                token.set("fliph", true);
+            } else {
+                token.set("fliph", false);
+            }
             steps = steps * -1; //will "flip" the direction we're walking
             stepstaken = 0; //reset steps back to 0.
         }

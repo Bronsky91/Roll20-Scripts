@@ -1,7 +1,7 @@
 var lightsPower = 'off';
 
 function timeoutShipLights(light, lightDirection, lightValue) {
-    setTimeout(function () {
+    setInterval(function () {
         if(lightDirection == 'up') {
             if(lightValue < 40){
                 lightValue += 2;
@@ -21,7 +21,7 @@ function timeoutShipLights(light, lightDirection, lightValue) {
             light.set('light_radius', 40)
             return
         }
-        timeoutShipLights(light, lightDirection, lightValue);
+       // timeoutShipLights(light, lightDirection, lightValue);
     }, 100);
 }
 
