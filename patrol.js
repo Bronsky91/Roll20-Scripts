@@ -6,7 +6,6 @@ function patrolling(patrolObject) {
     var steps = patrolObject.steps;
     
     setInterval(function () {
-        log(patrolObject)
         if (token.get("status_bluemarker") === false) return;
         if (stepstaken > 5) {
             //Switch directions!
