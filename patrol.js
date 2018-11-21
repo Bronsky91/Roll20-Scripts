@@ -1,7 +1,12 @@
 // Mobs on patrol...
-function patrolling(token, steps, direction) {
+function patrolling(patrolObject) {
     var stepstaken = 0;
+    var token = patrolObject.token;
+    var direction = patrolObject.direction;
+    var steps = patrolObject.steps;
+    
     setInterval(function () {
+        log(patrolObject)
         if (token.get("status_bluemarker") === false) return;
         if (stepstaken > 5) {
             //Switch directions!
@@ -12,11 +17,14 @@ function patrolling(token, steps, direction) {
         stepstaken++;
     }, 2000); //take an action every 2 seconds
 }
+
 on("ready", function () {
     var patrols = [
-        {token: findObjs({ name: "patrol1" })[0], direction: 'left', steps: -47}
+        {token: findObjs({ name: "patrolHallway" })[0], direction: "left", steps: -47}
     ]
+    
     for(i=0;i<patrols.length;i++){
-        patrolling(patrols[i].token, patrols[i].direction, patrols[i].steps)
+        patrolling(patrols[i])
     }
+    
 });
