@@ -1,6 +1,6 @@
 var lightsPower = 'off';
 
-function timeoutShipLights(light, lightDirection, lightValue) {
+function intervalShipLights(light, lightDirection, lightValue) {
     setInterval(function () {
         if(lightDirection == 'up') {
             if(lightValue < 40){
@@ -21,7 +21,6 @@ function timeoutShipLights(light, lightDirection, lightValue) {
             light.set('light_radius', 40)
             return
         }
-       // timeoutShipLights(light, lightDirection, lightValue);
     }, 100);
 }
 
@@ -29,7 +28,7 @@ on('ready', function(){
     var lights = findObjs({name: 'shipLight'});
     for(i=0;i<lights.length;i++){
         lights[i].set('light_radius', 0);
-        timeoutShipLights(lights[i], 'up', lights[i].get('light_radius'))
+        intervalShipLights(lights[i], 'up', lights[i].get('light_radius'))
    }
 });
 
@@ -42,7 +41,7 @@ on("chat:message", function(msg) {
         var lights = findObjs({name: 'shipLight'});
         for(i=0;i<lights.length;i++){
             lights[i].set('light_radius', 0);
-            timeoutShipLights(lights[i], 'up', lights[i].get('light_radius'))
+            intervalShipLights(lights[i], 'up', lights[i].get('light_radius'))
         }
     }
     sendChat(msg.who, "Lights " + lightsPower);
